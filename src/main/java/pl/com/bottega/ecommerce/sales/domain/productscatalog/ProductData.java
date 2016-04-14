@@ -36,7 +36,8 @@ public class ProductData {
 	@SuppressWarnings("unused")
 	private ProductData(){}
 	
-	ProductData(Id productId, Money price, String name, ProductType type, 
+	//Zmiana konstruktora na public,
+	public ProductData(Id productId, Money price, String name, ProductType type, 
 			Date snapshotDate) {
 		this.productId = productId;
 		this.price = price;
