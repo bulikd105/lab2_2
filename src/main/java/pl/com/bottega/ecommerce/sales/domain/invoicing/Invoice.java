@@ -36,7 +36,8 @@ public class Invoice  {
 
 	private List<InvoiceLine> items;
 
-
+	//Doda³em SuppresssWarnings, 
+	@SuppressWarnings("unused")
 	private Id id;
 
 	Invoice(Id invoiceId, ClientData client) {

@@ -27,6 +27,8 @@ public class Payment {
 
 	private PaymentFactory paymentFactory;
 
+	//Doda³em SuppresssWarnings, 
+	@SuppressWarnings("unused")
 	private Id aggregateId;
 
 
