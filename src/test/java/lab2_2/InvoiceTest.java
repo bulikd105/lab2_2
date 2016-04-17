@@ -28,10 +28,35 @@ public class InvoiceTest
 		ClientData client = new ClientData(Id.generate(), "New Client");
 		Invoice invoice = new InvoiceFactory().create(client);
 		TaxPolicy taxPolicy = new TaxPolicyImpl();
-		ProductData product = new ProductData(Id.generate(), new Money(10d), "Product1", ProductType.DRUG, new Date());
-		Money net = new Money(15d);
-		Tax tax = taxPolicy.calculateTax(product.getType(), net);
+		ProductData product; 
+		Money net;
+		Tax tax;
+		int quantity;
+		
+		//Zestaw danych nr 1
+		product = new ProductData(Id.generate(), new Money(10d), "Product1", ProductType.DRUG, new Date());
+		net = new Money(15d);	
+		tax = taxPolicy.calculateTax(product.getType(), net);
+		quantity = 7;
+		invoice.addItem(new InvoiceLine(product, quantity, net, tax));
+		
+		//Zestaw danych nr 2
+		product = new ProductData(Id.generate(), new Money(5d), "Product1", ProductType.DRUG, new Date());
+		quantity = 10;
+		net = new Money(10d);
+		tax = taxPolicy.calculateTax(product.getType(), net);
+		invoice.addItem(new InvoiceLine(product, quantity, net, tax));
 
+		//Zestaw danych nr 3
+		product = new ProductData(Id.generate(), new Money(4.5d), "Product1", ProductType.DRUG, new Date());
+		quantity = 22;
+		net = new Money(5d);
+		tax = taxPolicy.calculateTax(product.getType(), net);
+		invoice.addItem(new InvoiceLine(product, quantity, net, tax));
+		
+		//asserThat
+		assertThat(invoice.getItems().size(), is(3));
+		assertThat(invoice.getGros(), is(new Money(31.5)));
+		assertThat(invoice.getNet(), is(new Money(30.0)));
 	}
-
 }
