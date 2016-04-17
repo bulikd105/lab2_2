@@ -18,7 +18,8 @@ package pl.com.bottega.ecommerce.sales.domain.invoicing;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductData;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
-class RequestItem {
+//zmiana typu klasy na public
+public class RequestItem {
 
 	private ProductData productData;
 

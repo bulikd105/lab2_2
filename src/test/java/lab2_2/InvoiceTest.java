@@ -41,14 +41,14 @@ public class InvoiceTest
 		invoice.addItem(new InvoiceLine(product, quantity, net, tax));
 		
 		//Zestaw danych nr 2
-		product = new ProductData(Id.generate(), new Money(5d), "Product1", ProductType.DRUG, new Date());
+		product = new ProductData(Id.generate(), new Money(5d), "Product2", ProductType.DRUG, new Date());
 		quantity = 10;
 		net = new Money(10d);
 		tax = taxPolicy.calculateTax(product.getType(), net);
 		invoice.addItem(new InvoiceLine(product, quantity, net, tax));
 
 		//Zestaw danych nr 3
-		product = new ProductData(Id.generate(), new Money(4.5d), "Product1", ProductType.DRUG, new Date());
+		product = new ProductData(Id.generate(), new Money(4.5d), "Product3", ProductType.DRUG, new Date());
 		quantity = 22;
 		net = new Money(5d);
 		tax = taxPolicy.calculateTax(product.getType(), net);
