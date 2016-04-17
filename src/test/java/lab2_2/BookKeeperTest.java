@@ -10,12 +10,14 @@ import org.junit.Test;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sales.domain.invoicing.BookKeeper;
+import pl.com.bottega.ecommerce.sales.domain.invoicing.Invoice;
 import pl.com.bottega.ecommerce.sales.domain.invoicing.InvoiceFactory;
 import pl.com.bottega.ecommerce.sales.domain.invoicing.InvoiceRequest;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductData;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductType;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 import pl.com.bottega.ecommerce.sales.domain.invoicing.RequestItem;
+import pl.com.bottega.ecommerce.sales.domain.invoicing.TaxPolicyImpl;
 
 public class BookKeeperTest {
 
@@ -30,6 +32,7 @@ public class BookKeeperTest {
 		
 		ProductData product;
 		RequestItem item; 
+		Invoice invoice; 
 		
 		//zestaw danych 1
 		product = new ProductData(Id.generate(), new Money(10d), "Product1", ProductType.DRUG, new Date());
@@ -45,5 +48,12 @@ public class BookKeeperTest {
 		product = new ProductData(Id.generate(), new Money(22.5), "Product3", ProductType.FOOD, new Date());
 		item = new RequestItem(product, 100, new Money(133.63d));
 		request.add(item);
+		
+		//faktura i testy
+		invoice = bookKeeper.issuance(request, new TaxPolicyImpl());
+		
+		assertThat(invoice.getItems().size(), is(3));
+		assertThat(invoice.getGros(), is(new Money(287.21)));
+		assertThat(invoice.getNet(), is(new Money(270.73)));
 	}	
 }
