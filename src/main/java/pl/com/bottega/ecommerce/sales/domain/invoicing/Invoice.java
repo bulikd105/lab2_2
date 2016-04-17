@@ -39,8 +39,9 @@ public class Invoice  {
 	//Doda³em SuppresssWarnings, 
 	@SuppressWarnings("unused")
 	private Id id;
-
-	Invoice(Id invoiceId, ClientData client) {
+	
+	//Zmiana konstruktora na publiczny
+	public Invoice(Id invoiceId, ClientData client) {
 		this.id = invoiceId;
 		this.client = client;
 		this.items = new ArrayList<InvoiceLine>();

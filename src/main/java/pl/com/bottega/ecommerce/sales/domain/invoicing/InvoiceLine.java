@@ -33,7 +33,8 @@ public class InvoiceLine {
 
 	private Tax tax;
 
-	InvoiceLine(ProductData product, int quantity, Money net, Tax tax) {
+	//Zmiana konstruktora na publiczny
+	public InvoiceLine(ProductData product, int quantity, Money net, Tax tax) {
 		this.product = product;
 		this.quantity = quantity;
 		this.net = net;

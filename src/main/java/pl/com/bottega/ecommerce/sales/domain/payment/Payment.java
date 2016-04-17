@@ -31,8 +31,8 @@ public class Payment {
 	@SuppressWarnings("unused")
 	private Id aggregateId;
 
-
-	Payment(Id aggregateId, ClientData clientData, Money amount) {
+	//Zmiana konstruktora na publiczny
+	public Payment(Id aggregateId, ClientData clientData, Money amount) {
 		this.aggregateId = aggregateId;
 		this.clientData = clientData;
 		this.amount = amount;
